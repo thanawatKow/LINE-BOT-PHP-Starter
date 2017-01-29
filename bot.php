@@ -12,7 +12,7 @@ if (!is_null($events['events'])) {
 		// Reply only when message sent is in 'text' format
 		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
 			// Get text sent
-		        $time=time();
+		        $time=date('H:i:s');
 			$a=$event['message']['text'];
 			if($a=='สบายดีไม'){
 			$text="ฉันสบายดี ระบบของฉันยังทำงานได้อย่างดีเยี่ยม ขอบคุณที่ห่วงใยครับ เเล้วคุณสบายดีไมครับ ^^";
