@@ -14,11 +14,11 @@ if (!is_null($events['events'])) {
 			// Get text sent
 		
 			$a=$event['message']['text'];
-			if($a=="สบายดีไม"){
-			   $text="ฉันสบายดี ระบบของฉันยังทำงานได้อย่างดีเยี่ยม ขอบคุณที่ห่วงใยครับ เเล้วคุณสบายดีไมครับ ^^"
-			}else{
+			//if($a=="สบายดีไม"){
+			  // $text="ฉันสบายดี ระบบของฉันยังทำงานได้อย่างดีเยี่ยม ขอบคุณที่ห่วงใยครับ เเล้วคุณสบายดีไมครับ ^^"
+			//}else{
 				$text=$event['message']['text'];
-			}
+			//}
 			// Get replyToken
 			$replyToken = $event['replyToken'];
 
