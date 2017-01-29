@@ -41,9 +41,9 @@ if (!is_null($events['events'])) {
 			curl_close($ch);
 
 			echo $result . "\r\n";
-		}else if ($event['type'] == 'sticker' && $event['message']['type'] == 'String') {
+		}else if ($event['type'] == 'message' && $event['message']['type'] == 'sticker') {
 			// Get text sent
-			$text = $event['message']['string'];
+			$text = "Hello";
 			// Get replyToken
 			$replyToken = $event['replyToken'];
 
