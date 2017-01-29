@@ -43,7 +43,7 @@ if (!is_null($events['events'])) {
 			echo $result . "\r\n";
 		}else if ($event['type'] == 'message' && $event['message']['type'] == 'sticker') {
 			// Get text sent
-			$text = "Hello";
+			$text = "สวัสดี เราชื่อ Namesis";
 			// Get replyToken
 			$replyToken = $event['replyToken'];
 
