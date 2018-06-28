@@ -1,4 +1,21 @@
 <?php
+
+function urlExists($url=NULL)  
+{  
+    if($url == NULL) return false;  
+    $ch = curl_init($url);  
+    curl_setopt($ch, CURLOPT_TIMEOUT, 5);  
+    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);  
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);  
+    $data = curl_exec($ch);  
+    $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);  
+    curl_close($ch);  
+    if($httpcode>=200 && $httpcode<300){  
+        return true;  
+    } else {  
+        return false;  
+    }  
+}  
 $access_token = 'MD2dEPMURretUcV/8Gy3euEQDd8DecNipGykcYblT0Z+zVtquny3uwsIg+kt6kEF+JmkZ8fNVdWozJZwdekkR0NBg38aal0mg35mUW1064/CWQnZuCew7HNiqw8I0tL6PNGPfucx1EIwT8Zo38DcwwdB04t89/1O/w1cDnyilFU=';
 
 // Get POST body content
@@ -12,25 +29,19 @@ if (!is_null($events['events'])) {
 		// Reply only when message sent is in 'text' format
 		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
 			// Get text sent
-		        $time=date('H+7:i:s');
+		    $time=date('H+7:i:s');
 			$a=$event['message']['text'];
-			if($a=='สบายดีไม'){
-			$text="ฉันสบายดี ระบบของฉันยังทำงานได้อย่างดีเยี่ยม ขอบคุณที่ห่วงใยครับ เเล้วคุณสบายดีไมครับ ^^";
-			}else if($a=="ฉันสบายดี"){
-		           $text="ดีเเล้วที่เห็นคุณสบายดี";
-			}else if($a=="ช่วงนี้ไม่ค่อยสบายใจเลย"){
-			   $text="เป็นไรหรอครับ";	
-			}else if($a=="ฉันรู้สึกเหงา"){
-			  $text= "ไม่ต้องเหงาไปหรอก ฉันพร้อมที่จะคุยกับคุณเสมอ";
-			}else if($a=="โดนผู้ชายเทมาอ่ะ"){
-			  $text="ไม่ต้องเสียใจไปนะ มีอะไรคุยกับเราได้นะเราพร้อมรับฟังเสมอ ^^";
-			}else if($a=="โดนผู้หญิงเทมา")
-			{
-			  $text="ไม่ต้องเสียใจไปเลย เพื่อน เราอยู่รับนายเสมอ";
-			}else if($a="กี่โมงเเล้ว"){
+			 if($a="กี่โมงเเล้ว"){
 			      $text=$time;	
+			}else if($a="server"){
+				$ip="203.150.19.205";
+				$test=urlExists($ip);
+				if($test==1){
+					$text="Ip 203.150.19.205 : Server OK";
+				}else{
+					$text="Ip 203.150.19.205 : Server Down";
+				}
 			}
-			
 			else {
 			 $text=$event['message']['text'];
 			}
@@ -66,13 +77,11 @@ if (!is_null($events['events'])) {
 			$text = "สวัสดี เราชื่อ Namesis ยินดีที่ได้รู้จักครับ ^^";
 			// Get replyToken
 			$replyToken = $event['replyToken'];
-
 			// Build message to reply back
 			$messages = [
 				'type' => 'text',
 				'text' => $text
 			];
-
 			// Make a POST Request to Messaging API to reply to sender
 			$url = 'https://api.line.me/v2/bot/message/reply';
 			$data = [
@@ -81,7 +90,6 @@ if (!is_null($events['events'])) {
 			];
 			$post = json_encode($data);
 			$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
-
 			$ch = curl_init($url);
 			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -90,7 +98,6 @@ if (!is_null($events['events'])) {
 			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
 			$result = curl_exec($ch);
 			curl_close($ch);
-
 			echo $result . "\r\n";
 		}
 	}
