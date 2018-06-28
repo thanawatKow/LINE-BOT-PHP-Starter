@@ -31,9 +31,8 @@ if (!is_null($events['events'])) {
 			// Get text sent
 		    $time=date('H+7:i:s');
 			$a=$event['message']['text'];
-			 if($a=="กี่โมงเเล้ว"){
-			      $text=$time;	
-			}else if($a=="server"){
+				
+		   if($a=="server"){
 				$ip="203.150.19.205";
 				$test=urlExists($ip);
 				if($test==1){
