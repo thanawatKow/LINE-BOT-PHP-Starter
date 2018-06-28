@@ -33,17 +33,24 @@ if (!is_null($events['events'])) {
 		   if($a=="server"){
 				$ipA="203.150.19.205";
 				$ipB="203.151.83.3";
+				$ipC="35.198.192.48";
 				$serverA=urlExists($ipA);
 				$serverB=urlExists($ipB);
+				$serverC=urlExists($ipC);
 				if($serverA==1){
-					$text.="Ip 203.150.19.205 : Server OK";
+					$text.="Ip 203.150.19.205 (backup) : Server OK";
 				}else{
-					$text.="Ip 203.150.19.205 : Server Down";
+					$text.="Ip 203.150.19.205 (backup) : Server Down";
 				}
 				if($serverB==1){
-					$text.="\r\nIp 203.151.83.3 : Server OK";
+					$text.="\r\nIp 203.151.83.3 (backup เก่า): Server OK";
 				}else{
-					$text.="\r\nIp 203.151.83.3 : Server Down";
+					$text.="\r\nIp 203.151.83.3 (backup เก่า): Server Down";
+				}
+				if($serverC==1){
+					$text.="\r\nIp 35.198.192.48 (web ): Server ok";
+				}else{
+					$text.="\r\nIp 35.198.192.48 (web ): Server Down";
 				}
 			}
 			else {
