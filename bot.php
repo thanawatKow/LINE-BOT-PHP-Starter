@@ -41,9 +41,9 @@ if (!is_null($events['events'])) {
 					$text.="Ip 203.150.19.205 : Server Down";
 				}
 				if($serverB==1){
-					$text.="<br>Ip 203.151.83.3 : Server OK";
+					$text.="\r\nIp 203.151.83.3 : Server OK";
 				}else{
-					$text.="<br>Ip 203.151.83.3 : Server Down";
+					$text.="\r\nIp 203.151.83.3 : Server Down";
 				}
 			}
 			else {
